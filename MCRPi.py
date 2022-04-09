@@ -8,7 +8,7 @@ import sys
 
 fullPathToServerFolder = sys.argv[1]
 fullPathToJava = sys.argv[2]
-serverJarName = sys.argv[3]
+serverJar = sys.argv[3]
 powerPin = int(sys.argv[4])
 startRamMemory = sys.argv[5]
 maxRamMemory = sys.argv[6]
@@ -26,9 +26,9 @@ def startListening(GPIO_PIN, screenName):
     subprocess.call(["sudo", "shutdown", "-h", "now"], shell=False)
 
 
-def startMC(screenName, fullPathToJava, serverJarName, startRamMemory, maxRamMemory):
-    subprocess.call(["screen", "-dmS", screenName, fullPathToJava, "-Xms" + startRamMemory, "-Xmx" + maxRamMemory, "-jar", serverJarName], shell=False)
+def startMC(screenName, fullPathToJava, serverJar, startRamMemory, maxRamMemory):
+    subprocess.call(["screen", "-dmS", screenName, fullPathToJava, "-Xms" + startRamMemory, "-Xmx" + maxRamMemory, "-jar", serverJar], shell=False)
 
 os.chdir(fullPathToServerFolder)
-startMC(screenName, fullPathToJava, serverJarName, startRamMemory, maxRamMemory)
+startMC(screenName, fullPathToJava, serverJar, startRamMemory, maxRamMemory)
 startListening(powerPin, screenName)
