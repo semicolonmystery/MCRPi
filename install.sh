@@ -62,13 +62,13 @@ else
 fi
 
 echo "Copying all other files..."
-sudo sed -i 's/^fullPathToServerFolder\=.*/fullPathToServerFolder="${fullPathToServerFolder}"/' rc.local
-sudo sed -i 's/^fullPathToJava\=.*/fullPathToJava="${fullPathToJava}"/' rc.local
-sudo sed -i 's/^serverJar\=.*/serverJar="${serverJar}"/' rc.local
-sudo sed -i 's/^powerPin\=.*/powerPin="${powerPin}"/' rc.local
-sudo sed -i 's/^startRamMemory\=.*/startRamMemory="${startRamMemory}"/' rc.local
-sudo sed -i 's/^maxRamMemory\=.*/maxRamMemory="${maxRamMemory}"/' rc.local
-sudo sed -i 's/^screenName\=.*/screenName="${screenName}"/' rc.local
+sudo sed -i 's/^fullPathToServerFolder\=.*/fullPathToServerFolder="$fullPathToServerFolder"/' rc.local
+sudo sed -i 's/^fullPathToJava\=.*/fullPathToJava="$fullPathToJava"/' rc.local
+sudo sed -i 's/^serverJar\=.*/serverJar="$serverJar"/' rc.local
+sudo sed -i 's/^powerPin\=.*/powerPin="$powerPin"/' rc.local
+sudo sed -i 's/^startRamMemory\=.*/startRamMemory="$startRamMemory"/' rc.local
+sudo sed -i 's/^maxRamMemory\=.*/maxRamMemory="$maxRamMemory"/' rc.local
+sudo sed -i 's/^screenName\=.*/screenName="$screenName"/' rc.local
 sudo mv rc.local /etc/rc.local
 sudo mv MCRPi.py /usr/local/bin/MCRPi.py
 exit 0
