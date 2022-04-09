@@ -47,7 +47,7 @@ then
         build=$(echo $(echo $json | jq ".builds") | jq ".[$(echo $json | jq ".builds|length-1")]")
         buildNumber=$(echo $build | jq '.build')
         fileName=$(echo $(echo $build | jq '.downloads.application.name') | sed 's/^.//;s/.$//')
-        sudo wget -O "$fullPathToServerFolder/$serverJarName.jar" "https://papermc.io/api/v2/projects/$serverType/versions/$mainVersion/builds/$buildNumber/downloads/$fileName"
+        sudo wget -O "$fullPathToServerFolder/$serverJarName.jar" "https://papermc.io/api/v2/projects/$serverType/versions/$serverVersion/builds/$buildNumber/downloads/$fileName"
 elif [[ ($serverType == "spigot") || ($serverType == "craftbukkit") ]]
 then
         echo "Downloading latest build of $serverType $serverVersion..."
