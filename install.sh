@@ -43,11 +43,11 @@ sudo tar --extract --file temurin-17.tar.gz --directory=$HOME/bin
 if [[ ($serverType == "paper") || ($serverType == "waterfall") || ($serverType == "velocity") ]]
 then
         echo "Downloading latest build of $serverType $serverVersion"
-        json=$(curl "https://papermc.io/api/v2/projects/$mainVersion/version_group/$3/builds")
+        json=$(curl "https://papermc.io/api/v2/projects/$serverType/version_group/$mainVersion/builds")
         build=$(echo $(echo $json | jq ".builds") | jq ".[$(echo $json | jq ".builds|length-1")]")
         buildNumber=$(echo $build | jq '.build')
         fileName=$(echo $(echo $build | jq '.downloads.application.name') | sed 's/^.//;s/.$//')
-        sudo wget -O "$fullPathToServerFolder/$serverJarName.jar" "https://papermc.io/api/v2/projects/$mainVersion/versions/$latestVersion/builds/$buildNumber/downloads/$fileName"
+        sudo wget -O "$fullPathToServerFolder/$serverJarName.jar" "https://papermc.io/api/v2/projects/$serverType/versions/$mainVersion/builds/$buildNumber/downloads/$fileName"
 elif [[ ($serverType == "spigot") || ($serverType == "craftbukkit") ]]
 then
         echo "Downloading latest build of $serverType $serverVersion..."
