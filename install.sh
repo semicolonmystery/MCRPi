@@ -62,13 +62,13 @@ else
 fi
 
 echo "Copying all other files..."
-a = 's/^fullPathToServerFolder\=.*/fullPathToServerFolder="$fullPathToServerFolder"/'
-b = 's/^fullPathToJava\=.*/fullPathToJava="$fullPathToJava"/'
-c = 's/^serverJar\=.*/serverJar="$serverJar"/'
-d = 's/^powerPin\=.*/powerPin="$powerPin"/'
-e = 's/^startRamMemory\=.*/startRamMemory="$startRamMemory"/'
-f = 's/^maxRamMemory\=.*/maxRamMemory="$maxRamMemory"/'
-g = 's/^screenName\=.*/screenName="$screenName"/'
+a='s/^fullPathToServerFolder\=.*/fullPathToServerFolder="$fullPathToServerFolder"/'
+b='s/^fullPathToJava\=.*/fullPathToJava="$fullPathToJava"/'
+c='s/^serverJar\=.*/serverJar="$serverJar"/'
+d='s/^powerPin\=.*/powerPin="$powerPin"/'
+e='s/^startRamMemory\=.*/startRamMemory="$startRamMemory"/'
+f='s/^maxRamMemory\=.*/maxRamMemory="$maxRamMemory"/'
+g='s/^screenName\=.*/screenName="$screenName"/'
 sudo sed -i $a rc.local
 sudo sed -i $b rc.local
 sudo sed -i $c rc.local
