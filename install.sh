@@ -47,15 +47,15 @@ then
         build=$(echo $(echo $json | jq ".builds") | jq ".[$(echo $json | jq ".builds|length-1")]")
         buildNumber=$(echo $build | jq '.build')
         fileName=$(echo $(echo $build | jq '.downloads.application.name') | sed 's/^.//;s/.$//')
-        sudo wget -O "$fullPathToServerFolder/$serverJarName.jar" "https://papermc.io/api/v2/projects/$mainVersion/versions/$latestVersion/builds/$buildNumber/downloads/$fileName"
+        sudo wget -O "fullPathToServerFolder/$serverJarName.jar" "https://papermc.io/api/v2/projects/$mainVersion/versions/$latestVersion/builds/$buildNumber/downloads/$fileName"
 elif [[ ($serverType == "spigot") || ($serverType == "craftbukkit") ]]
 then
         echo "Downloading latest build of $serverType $serverVersion..."
-        sudo wget -O "$fullPathToServerFolder/$serverJarName.jar" "https://download.getbukkit.org/$serverType/$serverType-$serverVersion.jar"
+        sudo wget -O "fullPathToServerFolder/$serverJarName.jar" "https://download.getbukkit.org/$serverType/$serverType-$serverVersion.jar"
 elif [[ $serverType == "bungeecord" ]]
 then
         echo "Downloading latest build of $serverType..."
-        sudo wget -O "$fullPathToServerFolder/$serverJarName.jar" "https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar"
+        sudo wget -O "fullPathToServerFolder/$serverJarName.jar" "https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar"
 else
         echo "You chosed bad server/proxy type!!"
         exit 0
