@@ -12,7 +12,7 @@ echo "Setting up variables..."
 fullPathToServerFolder=$1
 serverType=$2
 serverVersion=$3
-serverJarName=$4
+serverJar="$4.jar"
 fullPathToJava="$HOME/bin/jdk-17.0.2+8/bin/java"
 powerPin=3
 startRamMemory="2G"
@@ -47,28 +47,28 @@ then
         build=$(echo $(echo $json | jq ".builds") | jq ".[$(echo $json | jq ".builds|length-1")]")
         buildNumber=$(echo $build | jq '.build')
         fileName=$(echo $(echo $build | jq '.downloads.application.name') | sed 's/^.//;s/.$//')
-        sudo wget -O "$fullPathToServerFolder/$serverJarName.jar" "https://papermc.io/api/v2/projects/$serverType/versions/$serverVersion/builds/$buildNumber/downloads/$fileName"
+        sudo wget -O "$fullPathToServerFolder/$serverJar" "https://papermc.io/api/v2/projects/$serverType/versions/$serverVersion/builds/$buildNumber/downloads/$fileName"
 elif [[ ($serverType == "spigot") || ($serverType == "craftbukkit") ]]
 then
         echo "Downloading latest build of $serverType $serverVersion..."
-        sudo wget -O "$fullPathToServerFolder/$serverJarName.jar" "https://download.getbukkit.org/$serverType/$serverType-$serverVersion.jar"
+        sudo wget -O "$fullPathToServerFolder/$serverJar" "https://download.getbukkit.org/$serverType/$serverType-$serverVersion.jar"
 elif [[ $serverType == "bungeecord" ]]
 then
         echo "Downloading latest build of $serverType..."
-        sudo wget -O "$fullPathToServerFolder/$serverJarName.jar" "https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar"
+        sudo wget -O "$fullPathToServerFolder/$serverJar" "https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar"
 else
         echo "You chosed bad server/proxy type!!"
         exit 0
 fi
 
 echo "Copying all other files..."
-sudo sed -i 's/^fullPathToServerFolder\=.*/fullPathToServerFolder="$fullPathToServerFolder"/' rc.local
-sudo sed -i 's/^fullPathToJava\=.*/fullPathToJava="$fullPathToJava"/' rc.local
-sudo sed -i 's/^serverJar\=.*/serverJar="$serverJarName.jar"/' rc.local
-sudo sed -i 's/^powerPin\=.*/powerPin="$powerPin"/' rc.local
-sudo sed -i 's/^startRamMemory\=.*/startRamMemory="$startRamMemory.jar"/' rc.local
-sudo sed -i 's/^maxRamMemory\=.*/maxRamMemory="$maxRamMemory.jar"/' rc.local
-sudo sed -i 's/^screenName\=.*/screenName="$screenName.jar"/' rc.local
+sudo sed -i 's/^fullPathToServerFolder\=.*/fullPathToServerFolder="${fullPathToServerFolder}"/' rc.local
+sudo sed -i 's/^fullPathToJava\=.*/fullPathToJava="${fullPathToJava}"/' rc.local
+sudo sed -i 's/^serverJar\=.*/serverJar="${serverJar}"/' rc.local
+sudo sed -i 's/^powerPin\=.*/powerPin="${powerPin}"/' rc.local
+sudo sed -i 's/^startRamMemory\=.*/startRamMemory="${startRamMemory}"/' rc.local
+sudo sed -i 's/^maxRamMemory\=.*/maxRamMemory="${maxRamMemory}"/' rc.local
+sudo sed -i 's/^screenName\=.*/screenName="${screenName}"/' rc.local
 sudo mv rc.local /etc/rc.local
 sudo mv MCRPi.py /usr/local/bin/MCRPi.py
 exit 0
