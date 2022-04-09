@@ -9,9 +9,9 @@ then
 fi
 
 echo "Setting up variables..."
-fullPathToServerFolder="${1}"
-serverType="${2}"
-serverVersion="${3}"
+fullPathToServerFolder=$1
+serverType=$2
+serverVersion=$3
 serverJar="$4.jar"
 fullPathToJava="$HOME/bin/jdk-17.0.2+8/bin/java"
 powerPin=3
@@ -62,13 +62,20 @@ else
 fi
 
 echo "Copying all other files..."
-sudo sed -i 's/^fullPathToServerFolder\=.*/fullPathToServerFolder="${fullPathToServerFolder}"/' rc.local
-sudo sed -i 's/^fullPathToJava\=.*/fullPathToJava="${fullPathToJava}"/' rc.local
-sudo sed -i 's/^serverJar\=.*/serverJar="${serverJar}"/' rc.local
-sudo sed -i 's/^powerPin\=.*/powerPin="${powerPin}"/' rc.local
-sudo sed -i 's/^startRamMemory\=.*/startRamMemory="${startRamMemory}"/' rc.local
-sudo sed -i 's/^maxRamMemory\=.*/maxRamMemory="${maxRamMemory}"/' rc.local
-sudo sed -i 's/^screenName\=.*/screenName="${screenName}"/' rc.local
+a = 's/^fullPathToServerFolder\=.*/fullPathToServerFolder="$fullPathToServerFolder"/'
+b = 's/^fullPathToJava\=.*/fullPathToJava="$fullPathToJava"/'
+c = 's/^serverJar\=.*/serverJar="$serverJar"/'
+d = 's/^powerPin\=.*/powerPin="$powerPin"/'
+e = 's/^startRamMemory\=.*/startRamMemory="$startRamMemory"/'
+f = 's/^maxRamMemory\=.*/maxRamMemory="$maxRamMemory"/'
+g = 's/^screenName\=.*/screenName="$screenName"/'
+sudo sed -i $a rc.local
+sudo sed -i $b rc.local
+sudo sed -i $c rc.local
+sudo sed -i $d rc.local
+sudo sed -i $e rc.local
+sudo sed -i $f rc.local
+sudo sed -i $g rc.local
 sudo mv rc.local /etc/rc.local
 sudo mv MCRPi.py /usr/local/bin/MCRPi.py
 exit 0
