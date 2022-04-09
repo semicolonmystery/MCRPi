@@ -2,7 +2,7 @@
 
 if [ $# -lt 4 ]
 then
-        echo "installation help - ./install [full path to server folder] [server/proxy type] [server version] [server jar name]"
+        echo "installation help - bash install.sh [full path to server folder] [server/proxy type] [server version] [server jar name]"
         echo "All arguments are needed!!!"
         echo "If you wanna download bungeecord you can put anything as the version argument but down skip it!!!"
         exit 0
