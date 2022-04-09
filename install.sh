@@ -2,7 +2,7 @@
 
 if [ $# -lt 4 ]
 then
-        echo "installation help - bash install.sh [full path to server folder] [server/proxy type] [server version] [server jar name]"
+        echo "installation help - bash install [full path to server folder] [server/proxy type] [server version] [server jar name]"
         echo "All arguments are needed!!!"
         echo "If you wanna download bungeecord you can put anything as the version argument but down skip it!!!"
         exit 0
@@ -19,7 +19,7 @@ startRamMemory="2G"
 maxRamMemory="8G"
 screenName="minecraft"
 IFS="." read -a array <<< $serverVersion
-mainVersion="${array[0]}${array[1]}"
+mainVersion="${array[0]}.${array[1]}"
 
 echo "Installing all needed packages..."
 sudo apt-get install zip
