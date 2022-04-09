@@ -2,12 +2,12 @@
 
 fullPathToServerFolder="/Minecraft"
 fullPathToJava="/home/pi/bin/jdk-17.0.2/bin/java"
-serverJarName="server.jar"
-powerPIN=3
+serverJar="server.jar"
+powerPin=3
 startRamMemory="2G"
 maxRamMemory="8G"
 screenName="minecraft"
 
-sudo python3 /usr/local/bin/MCRPi.py $fullPathToServerFolder $fullPathToJava $serverJarName $powerPIN $startRamMemory $maxRamMemory $screenName
+sudo python3 /usr/local/bin/MCRPi.py $fullPathToServerFolder $fullPathToJava $serverJar $powerPin $startRamMemory $maxRamMemory $screenName
 
 exit 0
