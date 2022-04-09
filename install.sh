@@ -42,7 +42,7 @@ source $HOME/.bashrc
 sudo tar --extract --file temurin-17.tar.gz --directory=$HOME/bin
 
 
-if [[ $serverType == "paper" -o $serverType == "waterfall" -o $serverType == "velocity" ]]
+if [[ ($serverType == "paper") || ($serverType == "waterfall") || ($serverType == "velocity") ]]
 then
         echo "Downloading latest build of $serverType $serverVersion"
         json=$(curl "https://papermc.io/api/v2/projects/$mainVersion/version_group/$3/builds")
@@ -50,7 +50,7 @@ then
         buildNumber=$(echo $build | jq '.build')
         fileName=$(echo $(echo $build | jq '.downloads.application.name') | sed 's/^.//;s/.$//')
         sudo wget -O "fullPathToServerFolder/$serverJarName.jar" "https://papermc.io/api/v2/projects/$mainVersion/versions/$latestVersion/builds/$buildNumber/downloads/$fileName"
-elif [[ $serverType == "spigot" -o $serverType == "craftbukkit" ]]
+elif [[ ($serverType == "spigot") || ($serverType == "craftbukkit") ]]
 then
         echo "Downloading latest build of $serverType $serverVersion..."
         sudo wget -O "fullPathToServerFolder/$serverJarName.jar" "https://download.getbukkit.org/$serverType/$serverType-$serverVersion.jar"
