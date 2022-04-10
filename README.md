@@ -1,5 +1,5 @@
 # MCRPi
-This program will automaticaly configure minecraft server with button shutdown and other shutdown scripts and much more. It even supports bungeecord. It even has power saving mode if someone is not playing on spefific server for some time, than it will shutdown that server and raspberry pi.
+This small program can setup new minecraft server in less than five minutes with boot and shutdown scripts. You can shutdown you raspberry pi by a button but dont worry about that server that is running becose it will shutdown before raspberry pi. That server will automaticaly run after every boot.
 
 Step by step:
   1. Open terminal on your raspberry pi and run these commands:<br/>
