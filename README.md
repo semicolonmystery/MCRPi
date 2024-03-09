@@ -13,3 +13,5 @@ Step by step:
   2. Now edit the file you are in.
   3. After that you need to run ```./install.sh``` and it should setup everything.
   4. Now you can just modify file server.properties in your minecraft server folder.
+
+Also if you want to get to the console type ```sudo screen -ls``` and then ```sudo screen -r id```(replace the id with the number before the .minecraft)
