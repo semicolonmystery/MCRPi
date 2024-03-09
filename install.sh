@@ -1,29 +1,20 @@
 #!/bin/bash
 
 echo "Setting up variables..."
-source configurations.conf
-fullPathToJavaFolder="$HOME/bin/java/jdk-17.0.2+8/bin"
+source ./configurations.conf
 IFS="." read -a array <<< $serverVersion
 mainVersion="${array[0]}.${array[1]}"
 
 echo "Installing all needed packages..."
-sudo apt-get install zip
-sudo apt-get install screen
-sudo apt-get install jq
+sudo apt-get update -y
+sudo apt-get install zip -y
+sudo apt-get install screen -y
+sudo apt-get install jq -y
+sudo apt-get install openjdk-17-jdk -y
 
 echo "Creating all needed directories..."
-sudo mkdir $HOME/bin
-sudo mkdir $HOME/bin/java
 sudo mkdir $fullPathToServerFolder
-sudo rm -r "$fullPathToServerFolder/*"
-
-echo "Downloading and installing java..."
-sudo wget -O temurin-17.tar.gz https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.2%2B8/OpenJDK17U-jdk_aarch64_linux_hotspot_17.0.2_8.tar.gz
-
-sudo echo PATH=$PATH:$fullPathToJavaFolder >> $HOME/.bashrc
-
-sudo tar --extract --file temurin-17.tar.gz --directory=$HOME/bin/java
-
+sudo rm -r "$fullPathToServerFolder/$serverJar"
 
 if [[ ($serverType == "paper") || ($serverType == "waterfall") || ($serverType == "velocity") ]]
 then
@@ -48,7 +39,7 @@ fi
 echo "Setting all other needed things..."
 sudo echo "#!/bin/sh -e" >> rc.local
 sudo echo "" >> rc.local
-sudo echo "sudo python3 /usr/local/bin/MCRPi.py $fullPathToServerFolder $fullPathToJavaFolder/java $serverJar $powerPin $startRamMemory $maxRamMemory $screenName" >> rc.local
+sudo echo "sudo python3 /usr/local/bin/MCRPi.py $fullPathToServerFolder java $serverJar $powerPin $startRamMemory $maxRamMemory $screenName > /dev/null 2>&1 &" >> rc.local
 sudo echo "" >> rc.local
 sudo echo "exit 0" >> rc.local
 sudo echo "eula=true" >> eula.txt
