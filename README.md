@@ -1,7 +1,7 @@
 I haven't looked on this for a long time so I am not even sure if it works but you can try.
 
 # MCRPi
-This is a small program that can setup new minecraft server in less than five minutes with boot and shutdown scripts. You can shutdown you raspberry pi with a button but dont worry about that server that is running becose it will shutdown before raspberry pi. That server will automaticaly start running after every boot.
+This is a small program that can setup new minecraft server in less than five minutes with boot and shutdown scripts. You can shutdown you raspberry pi with a button but dont worry about the server that is currently running because it will shutdown before raspberry pi. The server will automaticaly start running right after boot.
 
 Step by step:
   1. Open terminal on your raspberry pi and run these commands:<br/>
